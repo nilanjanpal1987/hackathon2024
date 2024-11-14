@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Fashion this Winter</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #141414;
+            color: #e5e5e5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+        /* Hero section */
+        .hero {
+            position: relative;
+            background: url('path/to/your-featured-video-thumbnail.jpg') no-repeat center center / cover;
+            height: 800px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .hero-content {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .hero-title {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .hero-description {
+            font-size: 1em;
+            line-height: 1.6;
+        }
+        /* Carousel/Row styling */
+        .video-row {
+            margin-top: 30px;
+        }
+        .video-row h2 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        .video-grid {
+            display: flex;
+            overflow-x: auto;
+			overflow-y:hidden;
+            gap: 10px;
+            padding-bottom: 10px;
+        }
+		
+        .video-card {
+            min-width: 200px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .video-card:hover {
+            transform: scale(1.05);
+        }
+        .video-card img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .video-info {
+            padding: 8px 0;
+            color: #bbb;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+    let player;
+
+    // Load the Iframe Player API code asynchronously
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+            height: '500',
+            width: '800',
+            videoId: 'iwEjqsi55MI', // Replace with your YouTube video ID
+            events: {
+                'onReady': onPlayerReady,
+				 'onStateChange': onPlayerStateChange
+            }
+        });
+    }
+
+    // When the player is ready, get the video duration
+    function onPlayerReady(event) {
+        const duration = player.getDuration(); // Get the duration in seconds
+        document.getElementById("duration").textContent = duration;
+    }
+	
+	function onPlayerStateChange(event) {
+        // Check if the video is playing or paused to update remaining duration
+        if (event.data === YT.PlayerState.PLAYING || event.data === YT.PlayerState.PAUSED) {
+            updateRemainingTime();
+        }
+    }
+
+    function updateRemainingTime() {
+        const totalDuration = player.getDuration(); // Total video duration in seconds
+        const currentTime = player.getCurrentTime(); // Current playback time in seconds
+        const remainingTime = totalDuration - currentTime; // Calculate remaining time
+
+        // Display remaining time in the HTML
+        document.getElementById("remaining-time").textContent = remainingTime.toFixed(2);
+    }
+</script>
+<div class="container">
+    <!-- Hero Section -->
+    <div class="hero">
+	
+        <div class="hero-content">
+            <div class="hero-title">Fall 2023 Fashion Trends To Elevate Your Style | Fashion Over 40</div>
+			<div id="player">
+			<iframe width="800" height="500" src="https://www.youtube.com/embed/iwEjqsi55MI?si=759MeGzMa0JWAni2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+			</div>
+		<!--<video controls width="750" height="500">
+			<source src="C:\Users\npal\Documents\Hack2024\videoplayback.mp4" type="video/mp4">
+		</video> -->	
+            <div class="hero-description">10 more styling tips to help you get the most out of the clothes </div>
+			<p>Video Duration: <span id="duration">Loading...</span> seconds</p>
+			<p>Remaining Duration: <span id="remaining-time">Calculating...</span> seconds</p>
+        </div>
+    </div>
+    
+    <!-- Video Rows -->
+    <div class="video-row">
+        <h2>Showing Now</h2>
+        <div class="video-grid">
+            <!-- Video Card -->
+            <div class="video-card">
+                <a href="https://www.flipkart.com/dressberry-women-solid-casual-black-shirt/p/itmde2bdadceea11?pid=SHTH35XXZBAFUFDF&lid=LSTSHTH35XXZBAFUFDFQN6XXX&marketplace=FLIPKART&cmpid=content_shirt_8965229628_gmc">
+				<img height=300 width=70 src="https://i.ibb.co/0hR2zb0/Anchor-Dress.jpg" alt="Video Thumbnail">
+                <div class="video-info">Woman Relaxed Fit Solid casual shirt</div>
+				</a>
+            </div>
+            <div class="video-card">
+				<a href="https://www.myntra.com/dresses/lulu26sky/lulu--sky-floral-print-flared-sleeve-maxi-dress/30008869/buy">
+				<img height=300 width=70 src="https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/30008869/2024/6/21/2dee3537-33a8-4b50-a013-e10dd5f63b781718934597827LULUSKYFloralPrintFlaredSleeveMaxiDress2.jpg" alt="Image Unavailable">
+                <div class="video-info">Floral Print Dress</div>
+				</a>
+                
+            </div>
+            <div class="video-card">
+                <a href="https://www.diahannboutique.co.nz/coop-love-skirts-skirt/pcp3479-37.aspx">
+				<img height=300 width=70 src="https://www.diahannboutique.co.nz/user/images/17531_460_685.jpg?t=2303011022" alt="Image Unavailable">
+                <div class="video-info">Perfect Print Pairing</div>
+				</a>
+            </div>
+			 <div class="video-card">
+                <a href="https://gabrielahearst.com/products/billy-dress-red-clay-double-face-wool-crepe?variant=43265593934016">
+				<img src="https://i.ibb.co/ry1WqNB/Dress1.jpg" alt="Dress1" border="0" />
+                <div class="video-info">Billy Dress</div>
+				</a>
+            </div>
+			 <div class="video-card">
+                <a href="https://www.amazon.de/-/en/BOSS-C_epaula-Womens-Jersey-Dress/dp/B09YYWK3K4?th=1">
+				<img height=300 width=50 src="https://i.ibb.co/64jVwdx/Dress2.jpg" alt="Dress2" border="0" />
+                <div class="video-info">Jersay Dress</div>
+				</a>
+            </div>
+			<div class="video-card">
+                <a href="https://shop.melodyyazdani.com/products/marie">
+				<img height=300 width=50 src="https://i.ibb.co/6bX622T/Dress3.jpg" alt="Dress3" border="0" />
+                <div class="video-info">Melody Marie</div>
+				</a>
+            </div>
+			<div class="video-card">
+                <a href="https://www.amazon.in/Trendyme-Women-Denim-Flare-Sleeves/dp/B0CM6QLJWS">
+				<img height=300 width=50 src="https://i.ibb.co/wJr16D9/Dress4.jpg" alt="Image Unavailable">
+                <div class="video-info">Denim flare</div>
+				</a>
+            </div>
+            <!-- More video cards -->
+        </div>
+    </div>
+    
+    <div class="video-row">
+        <h2>Recommended for You</h2>
+        <div class="video-grid">
+            <div class="video-card">
+				<a href="https://www.youtube.com/watch?v=pqiTJ2uBqqk">
+				<img src="https://img.youtube.com/vi/pqiTJ2uBqqk/hqdefault.jpg" alt="Video Thumbnail">
+                <div class="video-info">Most Wearables in Fall 2023</div>
+				</a>   
+            </div>
+            <div class="video-card">
+				<a href="https://www.youtube.com/watch?v=9DxU-U3_9HE">
+				<img src="https://img.youtube.com/vi/9DxU-U3_9HE/hqdefault.jpg" alt="Video Thumbnail">
+                <div class="video-info">4 MOST USEFUL TRENDY COLOURS for Fall-Winter2023/24 that will last you forever</div>
+				</a>   
+            </div>
+			<div class="video-card">
+				<a href="https://www.youtube.com/watch?v=UYV7B0X8hnw">
+				<img src="https://img.youtube.com/vi/UYV7B0X8hnw/hqdefault.jpg" alt="Video Thumbnail">
+                <div class="video-info">Fall 2023 Fashion Trends you won't REGRET in 5 Years</div>
+				</a>   
+            </div>            <!-- More video cards -->
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
