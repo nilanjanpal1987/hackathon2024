@@ -24,7 +24,7 @@
         /* Hero section */
         .hero {
             position: relative;
-            background: url('path/to/your-featured-video-thumbnail.jpg') no-repeat center center / cover;
+            background: #141414; /*url('https://img.youtube.com/vi/iwEjqsi55MI/maxresdefault.jpg') no-repeat center center / cover;*/
             height: 800px;
             display: flex;
             align-items: center;
@@ -88,6 +88,7 @@
 </head>
 <body>
 <script src="https://www.youtube.com/iframe_api"></script>
+
 <script>
     let player;
 
@@ -123,7 +124,50 @@
         const remainingTime = totalDuration - currentTime; // Calculate remaining time
 
         // Display remaining time in the HTML
-        document.getElementById("remaining-time").textContent = remainingTime.toFixed(2);
+        document.getElementById("remaining-time").textContent = currentTime.toFixed(2); //remainingTime.toFixed(2);
+		//alert(currentTime.toFixed(2));
+		//const catalogueData = 
+		fetch('https://nilanjanpal1987.github.io/hackathon2024/MockData1.json') .then((res) => {
+                    if (!res.ok) {
+                        throw new Error
+                            (`HTTP error! Status: ${res.status}`);
+                    }
+                    return res.json();
+                })
+                .then(data =>
+						{
+							console.log(data);
+							if(Array.isArray(data))
+							{
+									data.forEach(post => {
+									 if (!document.getElementById(post.id)) {
+											if(post.StartDuration < currentTime && post.EndDuration > currentTime)
+											{
+												const heroVideoRow = document.querySelector('.video-grid');
+												const newDiv = document.createElement('div');
+												newDiv.id = post.id;
+												newDiv.classList.add('video-card');
+												newDiv.innerHTML = '<a href="' + post.shoppingUrl+'"> <img height=300 width=70 src="' + post.imgUrl + '" alt="Video Thumbnail"> <div class="video-info"> ' +  post.videoInfo + '</div> </a>' 
+												heroVideoRow.appendChild(newDiv)
+											}
+									}
+									else 
+									{
+										if(currentTime > post.EndDuration || currentTime < post.StartDuration)
+										{
+											document.getElementById(post.id).remove();
+										}
+									}									
+											
+									});
+							}
+						}
+					)
+                .catch((error) =>
+                    console.error("Unable to fetch data:", error));
+		
+		
+		
     }
 </script>
 <div class="container">
@@ -149,7 +193,7 @@
         <h2>Showing Now</h2>
         <div class="video-grid">
             <!-- Video Card -->
-            <div class="video-card">
+         <!--   <div class="video-card">
                 <a href="https://www.flipkart.com/dressberry-women-solid-casual-black-shirt/p/itmde2bdadceea11?pid=SHTH35XXZBAFUFDF&lid=LSTSHTH35XXZBAFUFDFQN6XXX&marketplace=FLIPKART&cmpid=content_shirt_8965229628_gmc">
 				<img height=300 width=70 src="https://i.ibb.co/0hR2zb0/Anchor-Dress.jpg" alt="Video Thumbnail">
                 <div class="video-info">Woman Relaxed Fit Solid casual shirt</div>
@@ -191,7 +235,7 @@
 				<img height=300 width=50 src="https://i.ibb.co/wJr16D9/Dress4.jpg" alt="Image Unavailable">
                 <div class="video-info">Denim flare</div>
 				</a>
-            </div>
+            </div> -->
             <!-- More video cards -->
         </div>
     </div>
